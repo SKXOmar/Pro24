@@ -1,0 +1,72 @@
+public class Stack1 {
+    Node top;
+    
+    boolean isEmpty(){
+        if(top==null)
+            return true;
+        else
+            return false;
+        
+    }
+    void push(int data){
+         Node newNode =new Node(data);
+        if (isEmpty()){
+            top=newNode;
+            newNode.next=null;
+        }
+        
+        newNode.next=top;
+        top=newNode;
+                
+           
+    }
+    
+    int pop(){
+        
+        if(isEmpty()){
+            System.out.println("Stack is empty");
+        }
+        int data;
+        data=top.data;
+        top=top.next;
+        return data;
+        
+        
+    }
+    
+    void displayStack(){
+        if(isEmpty()){
+            System.out.println("Stack is empty");
+        }
+        Node cur=top;
+        while(cur.next!=null){
+            System.out.println(cur.data+"->");
+            cur=cur.next;
+            
+        }
+
+        System.out.println("Null");
+    }
+    
+    void Peek(){
+        
+         if(isEmpty())
+                    System.out.println("Stack is empty!");
+                else
+                System.out.println("Top = "+top.data);
+    }
+    
+    int count(){
+      if(isEmpty()){
+            System.out.println("Stack is empty");
+        }
+      int count=0;
+        Node cur=top;
+        while(cur!=null){
+            count++;
+            cur=cur.next;
+            
+        }
+        return count;
+    }
+}
