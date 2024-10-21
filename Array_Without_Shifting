@@ -1,0 +1,72 @@
+public class Array_Without_Shifting {
+DoubleLinkedList Queue = new DoubleLinkedList();
+
+
+public void Enqueue(int element) {
+    Queue.insertFirst(elemnet);
+    Queue.insertLast(element);
+    Queue.displayList();
+    Queue.displayCount();
+}
+
+//Inserting End
+
+//Deleting Start
+public void Dequeue() {
+    if(isEmpty()) {
+        return ;
+    } else {
+        Queue.deleteFirst();
+        Queue.displayList();
+        Queue.displayCount();
+    }
+}
+
+}
+class Queue {
+    int[] arr;
+    int count;
+    int rear = 0;
+    int front = 0;
+    public Queue() {
+    arr = new int[100];
+    }
+    public Queue(int capacity) {
+    arr = new int[capacity];
+    }
+    public void enqueue(int val) {
+    if (isFull()) {
+    System.out.println("queue is full");
+    return;
+    }
+    count++;
+    arr[rear] = val;
+    rear = (rear + 1) % arr.length;
+    }
+    public boolean isFull() {
+    return count == arr.length; // return rear == front; is wrong
+    }
+    public int dequeue() {
+    if (isEmpty()) {
+    System.out.println("queue is empty");
+    return 0;
+    }
+    count--;
+    int e = arr[front];
+    front = (front + 1) % arr.length;
+    return e;
+    }
+    public boolean isEmpty() {
+    return count == 0; // return rear == front; is wrong
+    }
+    public int peek() {
+    if (isEmpty()) {
+    System.out.println("queue is empty");
+    return 0;
+    }
+    return arr[front];
+    }
+    public int size() {
+    return count;
+    }
+   }
