@@ -1,0 +1,70 @@
+public class Queue1 {
+    Node Fornt;
+    Node rear;
+
+    public Queue1() {
+        Fornt=null;
+        rear=null;
+    }
+    
+   boolean isEmpty(){
+       if(Fornt == null && rear == null)
+           return true;
+       else 
+           return false;
+   }
+   
+    void Enqueue(int data){
+       Node newNode=new Node(data);
+       if(isEmpty())
+           Fornt=rear=newNode;
+       else{
+           rear.next=newNode;
+           rear=newNode;
+           newNode.next=null;
+       }
+    }
+       void Dequeue(){
+           if(isEmpty())
+               System.out.println("List is empty!!");
+           else if(Fornt==rear)
+               Fornt=rear=null;
+           else
+               Fornt=Fornt.next;
+               
+   }
+       
+    void dispalyList(){
+    if (isEmpty()) {
+    System.out.println("List is empty!!");
+        }
+    Node cur = Fornt;
+    while (cur != null) {
+    System.out.print(cur.data + " -> ");
+    cur = cur.next;
+                }
+        System.out.println("Null");
+            }
+    
+            void Peek(){
+                if(isEmpty())
+                    System.out.println("List is empty!");
+                else
+                System.out.println("Fornt = "+Fornt.data);
+             }
+            
+            void Size(){
+                int count=0;
+        if (isEmpty()) {
+    System.out.println("List is empty!");
+        }
+        Node cur =Fornt;
+        while(cur!=null){
+            count++;
+            cur=cur.next;
+            
+        }
+                System.out.println("Count = "+count);
+            
+    }
+}
