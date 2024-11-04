@@ -1,0 +1,37 @@
+public class Recursion {
+
+  int sum(int n){
+ if(n==1){
+    return 1;
+ }else{
+    return n + sum(n-1);
+  }
+}
+
+ public static int Max(int A[], int n){  
+   if(n == 1) 
+      return A[0]; 
+          
+    return Math.max(A[n-1], Max(A, n-1)); 
+    } 
+
+
+public static boolean SearchRec(int arr[], int l, int r, int x){
+if (r < l){
+  return false;
+}
+
+if (arr[l] == x){
+  return true;
+}
+
+if (arr[r] == x){
+  return true;
+}
+
+ return SearchRec(arr, l + 1, r - 1, x);
+}
+
+
+
+}
