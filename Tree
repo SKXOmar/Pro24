@@ -1,0 +1,325 @@
+
+
+public class TreeNode {
+TNode root;  
+public void insertNode(int data){
+    root = insertNode(root,data);
+}
+private Node insertNode(Node TNode , int data){
+        TNode newNode = new TNode(data);
+        if (TNode == null){
+            if (size() ==0){
+                System.out.println(data+" is the root");
+            }
+            else {
+                System.out.println(data+" has inserted");
+            }
+            TNode = newNode;
+            return TNode ;
+        }
+
+        if (data>= TNode.data){
+            TNode.right = insertNode(TNode.right,data);
+
+        }
+        else if (data< TNode.data){
+            TNode.left = insertNode(TNode.left,data);
+
+        }
+
+        return TNode;
+
+    }
+    
+    public void DisplayRoot(){
+        if (root == null){
+            System.out.println("there is no root");
+            return;
+        }
+        System.out.println(root);
+
+    }
+    public void DisplayDegree0(){
+        System.out.println();
+        System.out.println("Degree "+0);
+
+        DisplayDegree0(root);
+    }
+    private void DisplayDegree0(TNode node){
+        if(node == null) {
+            return;
+        }
+        if(node.left == null && node.right == null) {
+            System.out.print(node.data + " ");
+            return;
+        }
+        DisplayDegree0(node.left);
+        DisplayDegree0(node.right);
+
+    }
+    public void DisplayDegree1(){
+        System.out.println();
+        System.out.println("Degree "+1);
+
+        DisplayDegree1(root);
+    }
+    private void DisplayDegree1(TNode node){
+        if(node == null) {
+            return;
+        }
+
+        if(
+                (node.left != null && node.right == null)
+                                    ||
+                (node.left == null && node.right != null)
+        )
+        {
+            System.out.print(node.data + " ");
+            return;
+        }
+        DisplayDegree1(node.left);
+        DisplayDegree1(node.right);
+
+    }
+    public void DisplayDegree2(){
+        System.out.println();
+        System.out.println("Degree "+2);
+
+        DisplayDegree2(root);
+    }
+    private void DisplayDegree2(TNode node){
+        if(node == null) {
+            return;
+        }
+        if(node.left != null && node.right != null) {
+            System.out.print(node.data + " ");
+        }
+        DisplayDegree2(node.left);
+        DisplayDegree2(node.right);
+
+    }
+
+    void DisplayNumbersOf_LeavesNode(){
+        System.out.println("the amount of leaves are : "+ degreeLookup(root,0));
+    }
+    void DisplayNumberOf_NeitherNode(){
+        System.out.println("the amount of Neither node are : "+ degreeLookup(root,1));
+    }
+    void DisplayNumbersOf_FullNode(){
+        System.out.println("the amount of full node are : " + degreeLookup(root,2));
+    }
+
+    void DisplayIsBST_fullTree(){
+        System.out.println(isBST_fullTree(root));
+    }
+    boolean isBST_fullTree(TNode node){
+
+      if (node!= null){
+
+        if(
+                (node.left != null && node.right == null) || (node.left == null && node.right != null))
+        {
+            return false;
+        }
+          isBST_fullTree(node.right);
+          isBST_fullTree(node.left);
+
+      }
+
+        return true ;
+    }
+
+    void In_order_LeftRight(){
+        System.out.println("in order left to right");
+        In_order_LeftRight(root);
+        System.out.println();
+    }
+    private void In_order_LeftRight(TNode node){
+        if (node != null){
+            System.out.print(node.data+" ");
+            In_order_LeftRight(node.left);
+            In_order_LeftRight(node.right);
+    }
+
+    void In_order_RightLeft(){
+        System.out.println("in order Right to left");
+        In_order_RightLeft(root);
+        System.out.println("");
+    }
+    private void In_order_RightLeft(TNode node){
+        if (node != null){
+        System.out.print(node.data+" ");
+        In_order_RightLeft(node.right);
+        In_order_RightLeft(node.left);
+    }
+    }
+
+    void Preorder_LeftRight(){
+        Preorder_LeftRight(root);
+    }
+    private void Preorder_LeftRight(TNode node){
+        if (node != null){
+        Preorder_LeftRight(node.left);
+        System.out.println(node.data);
+        Preorder_LeftRight(node.right);
+    }
+    }
+
+    void Preorder_RightLeft(){
+        Preorder_RightLeft(root);
+    }
+    private void Preorder_RightLeft(TNode node){
+        if (node != null){
+            Preorder_RightLeft(node.right);
+
+        System.out.println(node.data);
+        Preorder_RightLeft(node.left);
+    }
+    }
+
+    void Post_order_LeftRight(){
+        Post_order_LeftRight(root);
+    }
+    private void Post_order_LeftRight(TNode node){
+        if (node!=null){
+            Post_order_LeftRight(node.left);
+            Post_order_LeftRight(node.right);
+            System.out.println(node.data);
+        }
+    }
+    
+    void Post_order_RightLeft(){
+        Post_order_RightLeft(root);
+    }
+    private void Post_order_RightLeft(TNode node){
+        if (node!=null){
+            Post_order_RightLeft(node.left);
+            Post_order_RightLeft(node.right);
+            System.out.println(node.data);
+        }
+    }
+
+
+    void Level_order_LeftRight(){
+
+        Queue breath = Level_order_LeftRight(root,new Queue());
+
+        breath.displayList();
+    }
+    private Queue Level_order_LeftRight(TNode node , Queue breath){
+        if (node != null){
+            if(node == root){
+                breath.Enqueue(node.data);
+            }
+            Level_order_LeftRight2(node.left, breath);
+            Level_order_LeftRight2(node.right, breath);
+            Level_order_LeftRight(node.left, breath);
+            Level_order_LeftRight(node.right, breath);
+        }
+        return breath;
+    }
+    private void Level_order_LeftRight2(TNode node , Queue breath){
+        if (node != null){
+            breath.Enqueue_tree(node.data);
+        }
+    }
+   
+
+    void Level_order_RightLeft(){
+
+        Queue breath = Level_order_RightLeft(root,new Queue());
+        breath.displayList();
+    }
+    private Queue Level_order_RightLeft(TNode node, Queue breath) {
+        if (node != null) {
+            if (node == root) {
+                breath.Enqueue(node.data);
+            }
+            Level_order_RightLeft2(node.right, breath);
+            Level_order_RightLeft2(node.left, breath);
+            Level_order_RightLeft(node.right, breath);
+            Level_order_RightLeft(node.left, breath);
+        }
+        return breath;
+    }
+    
+    private void Level_order_RightLeft2(TNode node, Queue breath){
+        if (node != null){
+            breath.Enqueue_tree(node.data);
+        }
+
+    }
+    void findMin(){
+        System.out.println(findMin(root));
+    }
+    void findMax(){
+        System.out.println(findMax(root));
+    }
+
+    int findMin(TNode node){
+
+        if (node.left == null){
+            return node.data;
+        }
+        return findMin(node.left);
+    }
+
+    int findMax(TNode node){
+
+        if (node.right == null){
+            return node.data;
+        }
+        return findMax(node.right);
+    }
+
+int size(){
+
+    return size(root);
+
+    }
+    int size(TNode node ){
+
+        if (node == null){
+            return 0;
+        }
+
+
+     return size(node.left) + 1 + size(node.right);
+
+    }
+    int sizeLeft(){
+
+
+        return size(root.left);
+    }
+
+
+    int sizeRight(){
+
+    return size(root.right);
+
+    }
+
+    int numberofEdges(){
+        return size()-1;
+    }
+
+    boolean search(int val){
+
+     return search(root,val);
+    }
+     boolean search(TNode node,int val){
+      if (node == null){
+          return false;
+        }
+      if (node.data == val) {
+           return true;
+        }
+   else if (node.data > val) {
+            return search(node.left, val);
+        }
+                else {
+                return search(node.right, val);
+            }
+      }
+}
